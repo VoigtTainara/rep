@@ -1,0 +1,68 @@
+{
+  "funcionarios": [
+    {
+      "nome": "line",
+      "sobrenome": "",
+      "setor": {
+        "id": 1,
+        "nome": "dev"
+      },
+      "id": 1
+    },
+    {
+      "nome": "luna",
+      "sobrenome": "",
+      "setor": {
+        "id": 2,
+        "nome": "suporte"
+      },
+      "id": 2
+    },
+    {
+      "nome": "tai",
+      "sobrenome": "",
+      "setor": {
+        "id": 1,
+        "nome": "dev"
+      },
+      "id": 3
+    },
+    {
+      "nome": "dani",
+      "sobrenome": "",
+      "setor": {
+        "id": 2,
+        "nome": "suporte"
+      },
+      "id": 4
+    },
+    {
+      "nome": "rafa",
+      "sobrenome": "",
+      "setor": {
+        "id": 1,
+        "nome": "dev"
+      },
+      "id": 5
+    },
+    {
+      "nome": "lucas",
+      "sobrenome": "",
+      "setor": {
+        "id": 2,
+        "nome": "suporte"
+      },
+      "id": 6
+    }
+  ],
+  "setores": [
+    {
+      "nome": "dev",
+      "id": 1
+    },
+    {
+      "nome": "suporte",
+      "id": 2
+    }
+  ]
+}
