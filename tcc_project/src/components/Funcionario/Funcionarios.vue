@@ -1,6 +1,6 @@
 <template>
   <div>
-    <titulo :texto="setorid != undefined ? 'Setor: '+ setor.nome : 'Todos os funcionários'"/>
+    <titulo :texto="setorid != undefined ? 'Setor: '+ setor.nome : 'Todos os funcionários'" :btnVoltar="true"/>
     <div v-if="setorid !=undefined">
     <input type="text" placeholder="Nome do funcionário"
     v-model="nome" @keyup.enter="addFuncionario()">
@@ -15,7 +15,9 @@
       <tbody v-if="funcionarios.length">
         <tr v-for="(funcionario,index) in funcionarios" :key="index"> 
           <td>{{funcionario.id}}</td> 
-          <td>{{funcionario.nome}} {{funcionario.sobrenome}}</td>
+          <router-link :to="'/funcionarioDetalhe/'+funcionario.id" tag="td" style="cursor:pointer">
+          {{funcionario.nome}} {{funcionario.sobrenome}}
+          </router-link>
           <td>
             <button class="btn btnDanger" @click="remover(funcionario)">Remover</button>
           </td> 

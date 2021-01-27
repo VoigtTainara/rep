@@ -1,6 +1,6 @@
 <template>
   <div>
-    <titulo texto="Setores"/>
+    <titulo texto="Setores" :btnVoltar="true"/>
     <div>
     <input type="text" placeholder="Nome do setor"
     v-model="nome" @keyup.enter="addSetor()">

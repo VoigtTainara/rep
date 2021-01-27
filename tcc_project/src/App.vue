@@ -43,6 +43,7 @@ body, html{
   border: 1px solid #000;
   padding: 10px 20px;
   cursor: pointer;
+  font-size: 1.0em;
   color: white;
   font-weight: bold;
   border-radius: 5px;
