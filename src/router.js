@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router'
-import Empresas from './components/Empresa/Empresas.vue'
+import Empresas from './components/Empresa/Empresas'
+import EmpresaDetalhe from './components/Empresa/EmpresaDetalhe'
 import Setores from './components/Setor/Setores'
 import Funcionarios from './components/Funcionario/Funcionarios'
 import FuncionarioDetalhe from './components/Funcionario/FuncionarioDetalhe'
@@ -13,6 +14,16 @@ export default new Router({
             path:'/empresas',
             nome: 'Empresas',
             component: Empresas
+        },
+        {
+            path: '/empresaDetalhe/:empresa_id',
+            nome: 'EmpresaDetalhe',
+            component: EmpresaDetalhe
+        },
+        {
+            path: '/setores/:empresa_id',
+            nome: 'Setores',
+            component: Setores
         },
         {
             path: '/setores',

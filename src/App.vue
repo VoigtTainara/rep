@@ -42,6 +42,9 @@ body, html{
 .btnPrimary{
   background-color:#00BFFF;
 }
+.btnSuccess{
+  background-color:#00FF7F;
+}
 .btn{
   border: 1px solid #000;
   padding: 10px 20px;

@@ -1,0 +1,49 @@
+{
+  "empresas": [
+    {
+      "id": 1,
+      "nome": "Empresa da Tai"
+    },
+    {
+      "nome": "Empresa de fulano",
+      "id": 2
+    }
+  ],
+  "funcionarios": [
+    {
+      "id": 1,
+      "nome": "Tai",
+      "sobrenome": "",
+      "setor": {
+        "id": 1,
+        "nome": "setor 1"
+      }
+    }
+  ],
+  "setores": [
+    {
+      "nome": "setor 1",
+      "id": 1,
+      "empresa": {
+        "id": 1,
+        "nome": "Empresa da Tai"
+      }
+    },
+    {
+      "nome": "setor 2",
+      "id": 2,
+      "empresa": {
+        "nome": "Empresa de fulano",
+        "id": 2
+      }
+    },
+    {
+      "nome": "setor 3",
+      "id": 3,
+      "empresa": {
+        "nome": "Empresa de fulano",
+        "id": 2
+      }
+    }
+  ]
+}

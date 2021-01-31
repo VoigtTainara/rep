@@ -17,7 +17,7 @@
           <td>{{funcionario.id}}</td> 
           <td>{{funcionario.nome}} {{funcionario.sobrenome}}</td>
           <td>
-            <router-link :to="'/funcionarioDetalhe/'+funcionario.id" tag="button" class="btn btnPrimary" style="cursor:pointer">
+            <router-link :to="'/funcionarioDetalhe/'+funcionario.id" tag="button" class="btn btnSuccess" style="cursor:pointer">
             Editar</router-link>
             <button class="btn btnDanger" @click="remover(funcionario)">Remover</button>
           </td> 

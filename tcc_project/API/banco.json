@@ -1,68 +1,27 @@
 {
   "funcionarios": [
     {
+      "id": 1,
       "nome": "Tai",
       "sobrenome": "",
       "setor": {
         "id": 1,
-        "nome": "dev"
-      },
-      "id": 1
-    },
-    {
-      "nome": "Carol",
-      "sobrenome": "",
-      "setor": {
-        "id": 1,
-        "nome": "dev"
-      },
-      "id": 2
-    },
-    {
-      "nome": "Dani",
-      "sobrenome": "",
-      "setor": {
-        "id": 3,
-        "nome": "comercial"
-      },
-      "id": 3
-    },
-    {
-      "nome": "Tanna",
-      "sobrenome": "",
-      "setor": {
-        "id": 3,
-        "nome": "comercial"
-      },
-      "id": 4
-    },
-    {
-      "nome": "André",
-      "sobrenome": "",
-      "setor": {
-        "id": 1,
-        "nome": "dev"
-      },
-      "id": 5
-    },
-    {
-      "nome": "Felipe",
-      "sobrenome": "",
-      "setor": {
-        "id": 4,
-        "nome": "Infra"
-      },
-      "id": 6
+        "nome": "setor 1"
+      }
     }
   ],
   "setores": [
     {
-      "nome": "comercial",
-      "id": 3
+      "nome": "setor 1",
+      "id": 1
     },
     {
-      "nome": "Infra",
-      "id": 4
+      "nome": "setor 2",
+      "id": 2
+    },
+    {
+      "nome": "setor 3",
+      "id": 3
     }
   ]
 }
