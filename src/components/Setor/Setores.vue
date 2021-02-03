@@ -104,7 +104,11 @@ export default {
             let indice = this.setores.indexOf(setor);
             this.setores.splice(indice, 1);
           }
-      }
+      },
+      // criarVerFuncionarios(setor){
+      //       alert("teste "+ setor.id);
+           
+      // }
     }
   }
 

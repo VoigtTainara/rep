@@ -1,6 +1,6 @@
 <template>
     <div>
-        <titulo :texto="'Funcionário:' + funcionario.nome" :btnVoltar="!visualizar">
+        <titulo :texto="'Funcionário:' + funcionario.nome" :btnVoltar="visualizar">
             <button v-show="visualizar" class="btn btnEditar" @click="editar()">Editar</button>
         </titulo>
         <table>

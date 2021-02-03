@@ -1,6 +1,6 @@
 <template>
     <div>
-        <titulo :texto="'Empresa:' + empresa.nome" :btnVoltar="!visualizar">
+        <titulo :texto="'Empresa:' + empresa.nome" :btnVoltar="visualizar">
             <button v-show="visualizar" class="btn btnEditar" @click="editar()">Editar</button>
         </titulo>
         <table>
@@ -68,8 +68,7 @@ import Titulo from '../Titulo/Titulo'
         },
         data(){
             return {
-                empresas:[],
-                setores: {},
+                empresa:{},
                 id: this.$route.params.empresa_id,
                 visualizar: true,
             }
