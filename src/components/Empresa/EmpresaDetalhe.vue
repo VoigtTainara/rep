@@ -29,8 +29,8 @@
                 <tr>
                     <td class="colPequeno">Nome fantasia</td>
                     <td>
-                        <label v-if="visualizar">{{empresa.nomefantasia}}</label>
-                        <input v-else v-model="empresa.nomefantasia" type="text"/>
+                        <label v-if="visualizar">{{empresa.nomeFantasia}}</label>
+                        <input v-else v-model="empresa.nomeFantasia" type="text"/>
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@ import Titulo from '../Titulo/Titulo'
                     id: empresa.id,
                     cnpj: empresa.cnpj,
                     nome: empresa.nome,
-                    nomefantasia: empresa.nomefantasia,
+                    nomeFantasia: empresa.nomeFantasia,
                     endereco: empresa.endereco,
                     telefone: empresa.telefone,
                 }

@@ -10,12 +10,14 @@
       <thead>
         <th>Código</th>
         <th>Nome</th>
+        <th v-if="setorid == undefined">Setor</th>
         <th>Opções</th>
       </thead>
       <tbody v-if="funcionarios.length">
         <tr v-for="(funcionario,index) in funcionarios" :key="index"> 
           <td>{{funcionario.id}}</td> 
           <td>{{funcionario.nome}} {{funcionario.sobrenome}}</td>
+          <td v-if="setorid == undefined">{{funcionario.setor.nome}}</td>
           <td>
             <router-link :to="'/funcionarioDetalhe/'+funcionario.id" tag="button" class="btn btnSuccess" style="cursor:pointer">
             Editar</router-link>
@@ -41,6 +43,7 @@ export default {
       //titulo: 'Funcionário',
       setorid: this.$route.params.setor_id,
       setor: {},
+      empresa:{},
       nome: '',
       funcionarios:[]
     }
@@ -54,7 +57,9 @@ export default {
     }else{
       this.$http.get('http://localhost:3000/funcionarios')
         .then(res => res.json())
-        .then(funcionarios => this.funcionarios = funcionarios)
+        .then(funcionarios => {
+          this.funcionarios = funcionarios
+        })
     }
     
   },
@@ -68,17 +73,20 @@ export default {
         sobrenome: "",
         setor:{
           id: this.setor.id,
-          nome: this.setor.nome
+          nome: this.setor.nome,
         }
       }
     
-      this.$http.post('http://localhost:3000/funcionarios', _funcionario)
-      .then(res => res.json())
-      .then(funcionarioRetornado => {
-        this.funcionarios.push(funcionarioRetornado);
-        this.nome= '';
-
-      })
+      if (_funcionario.nome){
+        this.$http.post('http://localhost:3000/funcionarios', _funcionario)
+        .then(res => res.json())
+        .then(funcionarioRetornado => {
+          this.funcionarios.push(funcionarioRetornado);
+          this.nome= '';
+        })
+      }else{
+        this.$alert("O nome do funcionário não pode ser vazio. Preencha o campo e realize a inclusão do funcionário.")
+      }
     },
     remover(funcionario){
       this.$http.delete(`http://localhost:3000/funcionarios/${funcionario.id}`)
@@ -93,7 +101,7 @@ export default {
        .then(res => res.json())
        .then(setor => {
           this.setor = setor
-         });   
+        });   
     },
   }
 }

@@ -17,7 +17,7 @@
         <tr v-for="(empresa,index) in empresas" :key="index"> 
           <td>{{empresa.id}}</td> 
           <td>{{empresa.nome}}</td>
-          <td>{{empresa.QtdSetores}}</td>
+          <td>{{empresa.qtdSetores}}</td>
           <td>
             <router-link 
             v-bind:to="'/setores/' + empresa.id" 
@@ -67,13 +67,17 @@ export default {
       let _empresa={
         nome: this.nome,
       }
-    
-      this.$http.post('http://localhost:3000/empresas', _empresa)
-      .then(res => res.json())
-      .then(empresaRetornada => {
-        this.empresas.push(empresaRetornada);
-        this.nome= '';
-      })
+         
+      if (_empresa.nome){
+        this.$http.post('http://localhost:3000/empresas', _empresa)
+        .then(res => res.json())
+        .then(empresaRetornada => {
+          this.empresas.push(empresaRetornada);
+          this.nome= '';
+        })
+      }else{
+          this.$alert("O nome da empresa não pode ser vazio. Preencha o campo e realize a inclusão da empresa.");
+      }
     },
     pegarQtdSetoresPorEmpresa(){
       this.empresas.forEach((empresa,index)=>{
@@ -98,8 +102,8 @@ export default {
     },
     remover(empresa){
           if (empresa.qtdSetores>0){
-            alert("Existem setores cadastrados na empresa. Realize a exclusão dos setores, antes de realizar"
-            + "a exclusão da empresa");
+            this.$alert("Existem setores cadastrados na empresa! Realize a exclusão dos setores, antes de realizar "
+            + "a exclusão da empresa.")
           }else if(empresa.qtdSetores<=0) {
             this.$http.delete(`http://localhost:3000/empresas/${empresa.id}`)
             let indice = this.empresas.indexOf(empresa);

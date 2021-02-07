@@ -1,7 +1,7 @@
 <template>
   <div>
-    <titulo texto="Setores" :btnVoltar="true"/>
-    <div>
+    <titulo :texto="empresaid != undefined ? 'Empresa: '+ empresa.nome : 'Todos os setores'" :btnVoltar="true"/>
+    <div v-if="empresaid !=undefined">
     <input type="text" placeholder="Nome do setor"
     v-model="nome" @keyup.enter="addSetor()">
     <button class="btn btnInput" @click="addSetor()">Adicionar</button>
@@ -11,6 +11,7 @@
         <th>Código</th>
         <th>Nome</th>
         <th>Quantidade funcionários</th>
+        <th v-if="empresaid == undefined">Empresa</th>
         <th>Opções</th>
       </thead>
       <tbody v-if="setores.length">
@@ -18,6 +19,7 @@
           <td>{{setor.id}}</td> 
           <td>{{setor.nome}}</td>
           <td>{{setor.qtdFunc}}</td>
+          <td v-if="empresaid == undefined">{{setor.empresa}}</td>
           <td>
             <router-link 
             v-bind:to="'/funcionarios/' + setor.id" 
@@ -43,19 +45,27 @@ export default {
   },
   data(){
     return{
-      titulo: 'Setor',
+      empresaid: this.$route.params.empresa_id,
+      empresa:{},
       nome: '',
       setores:[],
       funcionarios:[]
     }
   },
   created(){
-    this.$http.get('http://localhost:3000/funcionarios')
-    .then(res => res.json())
-    .then(funcionarios => {
-      this.funcionarios = funcionarios;
-      this.carregarSetores();
-    })
+    if(this.empresaid){
+      this.carregarEmpresas();
+      this.$http.get('http://localhost:3000/setores?empresa.id=' + this.empresaid)
+        .then(res => res.json())
+        .then(setores => this.setores = setores)
+    }else{
+      this.$http.get('http://localhost:3000/funcionarios')
+      .then(res => res.json())
+      .then(funcionarios => {
+        this.funcionarios = funcionarios;
+        this.carregarSetores();
+      })
+    }
   },
   props: {
 
@@ -64,15 +74,22 @@ export default {
     addSetor(){
       let _setor={
         nome: this.nome,
+        empresa:{
+          id: this.empresa.id,
+          nome: this.empresa.nome
+        }
       }
     
-      this.$http.post('http://localhost:3000/setores', _setor)
-      .then(res => res.json())
-      .then(setorRetornado => {
-        this.setores.push(setorRetornado);
-        this.nome= '';
-
-      })
+      if (_setor.nome){
+        this.$http.post('http://localhost:3000/setores', _setor)
+        .then(res => res.json())
+        .then(setorRetornado => {
+          this.setores.push(setorRetornado);
+          this.nome= '';
+        })
+      }else{
+        this.$alert("O nome do setor não pode ser vazio. Preencha o campo e realize a inclusão do setor.")
+      }
     },
     pegarQtdFuncionariosPorSetor(){
       this.setores.forEach((setor,index)=>{
@@ -81,10 +98,19 @@ export default {
           nome: setor.nome,
           qtdFunc: this.funcionarios.filter(funcionario =>
            funcionario.setor.id == setor.id
-          ).length
+          ).length,
+          empresa: setor.empresa.nome
         }
         this.setores[index] = setor
       });
+    },
+    carregarEmpresas(){
+        this.$http
+       .get('http://localhost:3000/empresas/' + this.empresaid)
+       .then(res => res.json())
+       .then(empresa => {
+          this.empresa = empresa
+       });
     },
     carregarSetores(){
        this.$http
@@ -97,8 +123,8 @@ export default {
     },
     remover(setor){
           if (setor.qtdFunc>0){
-            alert("Existem usuários cadastrados no setor. Realize a exclusão dos usuários, ou"+
-            "altere os funcionários de setor!");
+            this.$alert("Existem funcionários cadastrados no setor! Realize a exclusão dos funcionários, ou "+
+            "os altere de setor.")
           }else if(setor.qtdFunc<=0) {
             this.$http.delete(`http://localhost:3000/setores/${setor.id}`)
             let indice = this.setores.indexOf(setor);
